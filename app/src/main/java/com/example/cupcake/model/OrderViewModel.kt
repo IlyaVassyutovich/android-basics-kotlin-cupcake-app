@@ -1,5 +1,6 @@
 package com.example.cupcake.model
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -18,7 +19,7 @@ class OrderViewModel : ViewModel() {
     val price: LiveData<Double> = _price
 
     fun hasFlavorSet(): Boolean {
-        return _flavor.value.isNullOrBlank()
+        return !_flavor.value.isNullOrBlank()
     }
 
     override fun toString(): String {
@@ -31,9 +32,11 @@ class OrderViewModel : ViewModel() {
 
     fun setFlavor(newFlavor: String) {
         _flavor.value = newFlavor
+        Log.d("OrderViewModel", "set flavor to '$newFlavor'")
     }
 
     fun setQuantity(newQuantity: Int) {
         _quantity.value = newQuantity
+        Log.d("OrderViewModel", "set quantity to '$newQuantity'")
     }
 }

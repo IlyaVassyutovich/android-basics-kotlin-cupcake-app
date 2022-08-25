@@ -71,8 +71,6 @@ class StartFragment : Fragment() {
         if (!orderViewModel.hasFlavorSet())
             orderViewModel.setFlavor(getString(R.string.vanilla))
 
-        Log.d(logTag, "Order view model: $orderViewModel")
-
         findNavController().navigate(R.id.action_startFragment_to_flavorFragment)
     }
 
