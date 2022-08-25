@@ -55,7 +55,7 @@ class PickupFragment : Fragment() {
 
         binding?.apply {
             lifecycleOwner = viewLifecycleOwner
-            nextButton.setOnClickListener { goToNextScreen() }
+            fragment = this@PickupFragment
             orderViewModel = this@PickupFragment.orderViewModel
         }
     }
@@ -63,7 +63,7 @@ class PickupFragment : Fragment() {
     /**
      * Navigate to the next screen to see the order summary.
      */
-    private fun goToNextScreen() {
+    fun navigateToSummaryFragment() {
         Log.d(logTag, "navigating to summary fragment")
         findNavController().navigate(R.id.action_pickupFragment_to_summaryFragment)
     }

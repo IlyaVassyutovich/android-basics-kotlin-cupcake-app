@@ -52,7 +52,7 @@ class SummaryFragment : Fragment() {
 
         binding?.apply {
             lifecycleOwner = viewLifecycleOwner
-            sendButton.setOnClickListener { sendOrder() }
+            fragment = this@SummaryFragment
             orderViewModel = this@SummaryFragment.orderViewModel
         }
     }
@@ -60,7 +60,7 @@ class SummaryFragment : Fragment() {
     /**
      * Submit the order by sharing out the order details to another app via an implicit intent.
      */
-    private fun sendOrder() {
+    fun sendOrder() {
         Toast.makeText(activity, "Send Order", Toast.LENGTH_SHORT).show()
     }
 

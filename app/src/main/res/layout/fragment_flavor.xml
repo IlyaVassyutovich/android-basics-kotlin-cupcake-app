@@ -22,6 +22,10 @@
     <data>
 
         <variable
+            name="fragment"
+            type="com.example.cupcake.FlavorFragment" />
+
+        <variable
             name="orderViewModel"
             type="com.example.cupcake.model.OrderViewModel" />
     </data>
@@ -110,6 +114,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/side_margin"
+                android:onClick="@{() -> fragment.navigateToPickupFragment()}"
                 android:text="@string/next"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

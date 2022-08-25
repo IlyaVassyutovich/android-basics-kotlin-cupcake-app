@@ -21,6 +21,10 @@
     <data>
 
         <variable
+            name="fragment"
+            type="com.example.cupcake.SummaryFragment" />
+
+        <variable
             name="orderViewModel"
             type="com.example.cupcake.model.OrderViewModel" />
     </data>
@@ -134,6 +138,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/side_margin"
+                android:onClick="@{() -> fragment.sendOrder()}"
                 android:text="@string/send" />
 
         </LinearLayout>

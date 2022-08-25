@@ -54,7 +54,7 @@ class FlavorFragment : Fragment() {
 
         binding?.apply {
             lifecycleOwner = viewLifecycleOwner
-            nextButton.setOnClickListener { navigateToPickupFragment() }
+            fragment = this@FlavorFragment
             orderViewModel = this@FlavorFragment.orderViewModel
         }
     }
@@ -62,7 +62,7 @@ class FlavorFragment : Fragment() {
     /**
      * Navigate to the next screen to choose pickup date.
      */
-    private fun navigateToPickupFragment() {
+    fun navigateToPickupFragment() {
         Log.d(logTag, "navigating to flavor fragment")
         findNavController().navigate(R.id.action_flavorFragment_to_pickupFragment)
     }
