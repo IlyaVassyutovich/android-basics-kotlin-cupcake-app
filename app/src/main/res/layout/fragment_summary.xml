@@ -19,6 +19,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".SummaryFragment">
 
+    <data>
+        <variable
+            name="orderViewModel"
+            type="com.example.cupcake.model.OrderViewModel" />
+    </data>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -52,7 +58,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/order_summary_margin"
-                    tools:text="6 cupcakes" />
+                    android:text="@{orderViewModel.quantity.toString()}"
+                    tools:text="42" />
 
                 <View
                     android:id="@+id/divider1"
@@ -75,6 +82,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/order_summary_margin"
+                    android:text="@{orderViewModel.flavor}"
                     tools:text="Chocolate" />
 
                 <View
@@ -98,6 +106,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/order_summary_margin"
+                    android:text="@{orderViewModel.pickupDate}"
                     tools:text="Sunday" />
 
                 <View
