@@ -53,6 +53,7 @@ class FlavorFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding?.apply {
+            lifecycleOwner = viewLifecycleOwner
             nextButton.setOnClickListener { navigateToPickupFragment() }
             orderViewModel = this@FlavorFragment.orderViewModel
         }

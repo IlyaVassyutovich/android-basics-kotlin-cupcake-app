@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
      Copyright (C) 2020 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,6 +19,7 @@
     tools:context=".SummaryFragment">
 
     <data>
+
         <variable
             name="orderViewModel"
             type="com.example.cupcake.model.OrderViewModel" />
@@ -124,6 +124,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:layout_marginTop="@dimen/side_margin"
+                    android:text="@{@string/total_price(orderViewModel.price)}"
                     tools:text="Total $5.00" />
 
             </LinearLayout>
