@@ -26,7 +26,7 @@ class OrderViewModel : ViewModel() {
     val pickupDateOptions: List<String>
 
     init {
-        resetData()
+        resetOrder()
         pickupDateOptions = generatePickupDateOptions()
     }
 
@@ -67,7 +67,7 @@ class OrderViewModel : ViewModel() {
         Log.d("OrderViewModel", "set pickup date to '$newPickupDate'")
     }
 
-    private fun resetData() {
+    fun resetOrder() {
         _quantity.value = 0
         _flavor.value = ""
         _pickupDate.value = ""
