@@ -3,7 +3,9 @@ package com.example.cupcake.model
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -21,7 +23,9 @@ class OrderViewModel : ViewModel() {
     val pickupDate: LiveData<String> = _pickupDate
 
     private val _price = MutableLiveData<Double>()
-    val price: LiveData<Double> = _price
+    val price: LiveData<String> = Transformations.map(_price) {
+        NumberFormat.getCurrencyInstance().format(it)
+    }
 
     val pickupDateOptions: List<String>
 
@@ -44,13 +48,11 @@ class OrderViewModel : ViewModel() {
 
     fun setFlavor(newFlavor: String) {
         _flavor.value = newFlavor
-        Log.d("OrderViewModel", "set flavor to '$newFlavor'")
     }
 
     fun setQuantity(newQuantity: Int) {
         _quantity.value = newQuantity
         updatePrice()
-        Log.d("OrderViewModel", "set quantity to '$newQuantity'")
     }
 
     private fun updatePrice() {
@@ -58,13 +60,11 @@ class OrderViewModel : ViewModel() {
         if (pickupDate.value == pickupDateOptions[0])
             newPrice += SAME_DAY_DELIVERY_PRICE
         _price.value = newPrice
-        Log.d("OrderViewModel", "set price to '$newPrice'")
     }
 
     fun setPickupDate(newPickupDate: String) {
         _pickupDate.value = newPickupDate
         updatePrice()
-        Log.d("OrderViewModel", "set pickup date to '$newPickupDate'")
     }
 
     fun resetOrder() {
@@ -72,7 +72,6 @@ class OrderViewModel : ViewModel() {
         _flavor.value = ""
         _pickupDate.value = ""
         _price.value = 0.0
-        Log.d("OrderViewModel", "reset order data")
     }
 
     private fun generatePickupDateOptions(): List<String> {
