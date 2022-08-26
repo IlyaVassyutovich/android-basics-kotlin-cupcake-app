@@ -15,6 +15,7 @@
  */
 package com.example.cupcake
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -62,7 +63,31 @@ class SummaryFragment : Fragment() {
      * Submit the order by sharing out the order details to another app via an implicit intent.
      */
     fun sendOrder() {
-        Toast.makeText(activity, "Send Order", Toast.LENGTH_SHORT).show()
+        val renderedQuantity = resources.getQuantityString(
+            R.plurals.cupcakes,
+            orderViewModel.quantity.value!!,
+            orderViewModel.quantity.value!!
+        )
+        val orderSummary = getString(
+            R.string.order_details,
+            renderedQuantity,
+            orderViewModel.flavor.value,
+            orderViewModel.pickupDate.value,
+            orderViewModel.price.value
+        )
+
+        val sendIntent = Intent(Intent.ACTION_SEND)
+            .setType("text/plain")
+            .putExtra(Intent.EXTRA_SUBJECT, getString(R.string.new_cupcake_order))
+            .putExtra(Intent.EXTRA_TEXT, orderSummary)
+
+        val resolveInfo = requireActivity()
+            .packageManager
+            .resolveActivity(sendIntent, 0)
+        if (resolveInfo != null)
+            startActivity(sendIntent)
+        else
+            Toast.makeText(requireActivity(), "Failed to send order", Toast.LENGTH_LONG).show()
     }
 
     fun cancelOrder() {
